@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<body>
+ 
+<script>
+function blBtn(id,html){
+    var r = document.getElementById(id);
+    if(!r){
+        r = document.createElement("button");
+        r.id = id;
+    }
+    r.innerHTML = html;
+    r.onclick = function(){alert(id);}
+    document.body.appendChild(r);
+    return r;
+}
+function blImg(id,url){
+    var r = document.getElementById(id);
+    if(!r){
+        r = document.createElement("img");
+        r.id = id;
+    }
+    r.src = url;
+    r.onclick = function(){alert(id);}
+    document.body.appendChild(r);
+    return r;
+}
+var p = 1;
+var b1 = blBtn("b1","<-");
+var b2 = blBtn("b2","->");
+var img =  blImg("i","https://littleflute.github.io/JavaScript1/images/0001.jpg");
+b1.onclick = function(){
+var i = document.getElementById("i");
+p--;
+var strP = p.toString();
+if(strP.length==1) strP = "000" + strP;
+else if(strP.length==2) strP = "00" + strP;
+else if(strP.length==3) strP = "0" + strP;
+var url = "https://littleflute.github.io/JavaScript1/images/" +strP+ ".jpg";
+i.src = url;
+}
+
+b2.onclick = function(){
+var i = document.getElementById("i");
+p++;
+var strP = p.toString();
+if(strP.length==1) strP = "000" + strP;
+else if(strP.length==2) strP = "00" + strP;
+else if(strP.length==3) strP = "0" + strP;
+var url = "https://littleflute.github.io/JavaScript1/images/" +strP+ ".jpg";
+i.src = url;
+}
+</script>
+</body>
+</html> 
