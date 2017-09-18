@@ -161,23 +161,56 @@ window.onload = function(){
        });
  magnifier.setSrc  = function(src)
  {  
-     magnifier.m.img.src = src;
- }
-}
-function plus()
-{ 
     var o = document.getElementById("img");
     if(o) 
     { 
-        o.src = "https://littleflute.github.io/JavaScript1/images/0002.jpg";
-        
-        magnifier.setSrc(o.src);
+        o.src = src;
     }
+     magnifier.m.img.src = src;
+ }
+ magnifier.showInfo  = function(txt)
+ {   
+    var o = document.getElementById("info");
+    if(o) 
+    { 
+        o.innerHTML = "v0.0.5: page " + txt;
+    } 
+ }
+ magnifier.showPage  = function(n)
+ {  
+    var sPath ="https://littleflute.github.io/";
+    if(n>409) n = 409;
+    if(n>=10&&n<=99)    sPath += "JavaScript1/images/00";
+    else if(n>=100&&n<=999)    sPath += "JavaScript1/images/0";
+    else    sPath += "JavaScript1/images/000";
+    sPath += n;
+    sPath += ".jpg";
+    magnifier.setSrc(sPath);
+    magnifier.idxPage = n;
+    magnifier.showInfo(n);
+ }
+ magnifier.addPageIdx  = function(n)
+ {    
+    magnifier.idxPage += n;
+    magnifier.showPage(magnifier.idxPage);
+ }
+ magnifier.idxPage = 1;
+ magnifier.showPage(magnifier.idxPage);
+}
+function plus(n)
+{       
+    magnifier.addPageIdx(n); 
 }
 </SCRIPT>
 </head>
 <body>
-<button onclick="plus()">+</button>
+<button onclick="plus(1)">+</button>
+<button onclick="plus(-1)">-</button>
+<button onclick="plus(10)">+10</button>
+<button onclick="plus(-10)">-10</button>
+<button onclick="plus(100)">+100</button>
+<button onclick="plus(-100)">-100</button>
+<button id="info">page 1</button>
     <div id="magnifier">
         <img src="https://littleflute.github.io/JavaScript1/images/0001.jpg" id="img" />
         <div id="Browser">
